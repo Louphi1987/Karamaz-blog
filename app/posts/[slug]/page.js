@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { getAllPosts, getPostBySlug } from "../../../lib/posts";
+import AdBanner from "../../../components/AdBanner";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
 
@@ -18,6 +20,8 @@ export async function generateMetadata({ params }) {
     };
   }
 
+  const imageUrl = post.image ? new URL(post.image, siteUrl).toString() : "";
+
   return {
     title: post.title,
     description: post.description,
@@ -28,12 +32,14 @@ export async function generateMetadata({ params }) {
       title: post.title,
       description: post.description,
       type: "article",
-      url: new URL(`/posts/${post.slug}`, siteUrl).toString()
+      url: new URL(`/posts/${post.slug}`, siteUrl).toString(),
+      images: imageUrl ? [{ url: imageUrl }] : []
     },
     twitter: {
-      card: "summary",
+      card: imageUrl ? "summary_large_image" : "summary",
       title: post.title,
-      description: post.description
+      description: post.description,
+      images: imageUrl ? [imageUrl] : []
     }
   };
 }
@@ -63,24 +69,34 @@ export default async function PostPage({ params }) {
 
   return (
     <article>
+      <nav className="back-nav" aria-label="Navigation article">
+        <Link href="/" className="back-link">
+          <- Retour au menu principal
+        </Link>
+      </nav>
+
       <header className="post-header">
         <h1 className="page-title">{post.title}</h1>
         {post.date ? <time dateTime={post.date}>{formatDate(post.date)}</time> : null}
       </header>
 
-      <div className="ad-slot" aria-label="Emplacement publicitaire">
-        {/* AdSense emplacement début d'article
-        <ins className="adsbygoogle" data-ad-client="ca-pub-XXXXXXXXXXXX" data-ad-slot="3333333333" data-ad-format="auto" data-full-width-responsive="true" />
-        */}
-      </div>
+      {post.image ? (
+        <figure className="post-figure">
+          <img src={post.image} alt={post.imageAlt || post.title} className="post-hero-image" />
+        </figure>
+      ) : null}
+
+      <AdBanner slot="3333333333" label="Publicite en debut d'article" />
 
       <div className="post-content" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
 
-      <div className="ad-slot" aria-label="Emplacement publicitaire">
-        {/* AdSense emplacement fin d'article
-        <ins className="adsbygoogle" data-ad-client="ca-pub-XXXXXXXXXXXX" data-ad-slot="4444444444" data-ad-format="auto" data-full-width-responsive="true" />
-        */}
-      </div>
+      <AdBanner slot="4444444444" label="Publicite en fin d'article" />
+
+      <p className="post-back-bottom">
+        <Link href="/" className="back-link">
+          <- Retour a l'accueil
+        </Link>
+      </p>
     </article>
   );
 }

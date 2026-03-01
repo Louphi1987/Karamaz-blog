@@ -1,6 +1,9 @@
 import "./globals.css";
+import Link from "next/link";
+import Script from "next/script";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -33,20 +36,30 @@ export default function RootLayout({ children }) {
       <body>
         <div className="site-shell">
           <header className="site-header">
-            <a href="/" className="site-title">
-              Karamaz
-            </a>
-            <p className="site-tagline">Chroniques littéraires minimalistes</p>
+            <div className="brand-row">
+              <Link href="/" className="brand-link" aria-label="Retour a l'accueil">
+                <span className="brand-logo" aria-hidden="true" />
+                <span className="brand-text">
+                  <span className="site-title">Karamaz</span>
+                  <span className="site-tagline">Lettres russes et outils pour auteurs independants</span>
+                </span>
+              </Link>
+              <nav className="site-nav" aria-label="Menu principal">
+                <Link href="/">Accueil</Link>
+                <Link href="/#articles">Articles</Link>
+                <Link href="/about">A propos</Link>
+              </nav>
+            </div>
           </header>
 
-          {/* Google AdSense global script placeholder
-          <Script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX"
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
-          */}
+          {adsenseClient ? (
+            <Script
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+              crossOrigin="anonymous"
+              strategy="afterInteractive"
+            />
+          ) : null}
 
           <main>{children}</main>
 

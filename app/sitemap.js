@@ -13,6 +13,10 @@ export default function sitemap() {
       url: siteUrl,
       lastModified: new Date()
     },
+    {
+      url: new URL("/about", siteUrl).toString(),
+      lastModified: new Date()
+    },
     ...posts
   ];
 }

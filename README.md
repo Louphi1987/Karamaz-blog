@@ -30,9 +30,28 @@ Créer `.env.local`:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://ton-domaine-vercel.vercel.app
+NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-XXXXXXXXXXXXXXXX
 ```
 
 Cette variable sert pour les URLs canoniques, Open Graph et sitemap.
+
+`NEXT_PUBLIC_ADSENSE_CLIENT` active automatiquement les emplacements publicitaires (sinon le site affiche un placeholder discret).
+
+## Logo et images
+
+- Place ton logo dans `public/logo-karamaz.png` pour l'afficher dans le header.
+- Pour les images d'articles, ajoute-les dans `public/images/posts`.
+- Dans le frontmatter Markdown d'un article, tu peux ajouter:
+
+```md
+---
+title: "Mon article"
+description: "..."
+date: "2026-03-01"
+image: "/images/posts/mon-image.jpg"
+imageAlt: "Description image"
+---
+```
 
 ## Déploiement Vercel
 
