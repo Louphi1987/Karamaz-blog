@@ -71,7 +71,7 @@ export default async function PostPage({ params }) {
     <article>
       <nav className="back-nav" aria-label="Navigation article">
         <Link href="/" className="back-link">
-          <- Retour au menu principal
+          &lt;- Retour au menu principal
         </Link>
       </nav>
 
@@ -94,7 +94,7 @@ export default async function PostPage({ params }) {
 
       <p className="post-back-bottom">
         <Link href="/" className="back-link">
-          <- Retour a l'accueil
+          &lt;- Retour a l'accueil
         </Link>
       </p>
     </article>
