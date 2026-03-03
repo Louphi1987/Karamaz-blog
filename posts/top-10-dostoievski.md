@@ -2,6 +2,8 @@
 title: "TOP 10 DOSTOÏEVSKI"
 description: "Les romans choisis pour leurs passages les plus fabuleux."
 date: "2026-03-01"
+image: "/images/couverture-karamaz.png"
+imageAlt: "Bibliotheque chaleureuse signee Karamaz"
 ---
 
 # TOP 10 DOSTOÏEVSKI

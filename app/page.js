@@ -4,7 +4,7 @@ import AdBanner from "../components/AdBanner";
 
 export const metadata = {
   title: "Accueil",
-  description: "Classements et lectures dostoïevskiennes en format blog minimal."
+  description: "Classements, critiques et conseils pour auteurs avec une experience de lecture premium."
 };
 
 function formatDate(dateString) {
@@ -28,22 +28,32 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="hero-panel">
-        <p className="hero-kicker">Karamaz Blog</p>
-        <h1 className="page-title">Lectures profondes et aide a la publication independante</h1>
-        <p className="hero-copy">
-          Critiques, passages marquants et ressources concretes pour mieux ecrire, diffuser et faire connaitre
-          tes projets d'ecriture.
-        </p>
+      <section className="hero-cover">
+        <img
+          src="/images/couverture-karamaz.png"
+          alt="Bibliotheque chaleureuse et ambiance litteraire Karamaz"
+          className="hero-cover-image"
+        />
+        <div className="hero-overlay">
+          <p className="hero-kicker">Karamaz Blog</p>
+          <h1 className="page-title">Un salon litteraire premium pour lecteurs exigeants et auteurs independants</h1>
+          <p className="hero-copy">
+            Analyses de grandes oeuvres, selections marquantes et outils concrets pour structurer, publier et faire
+            rayonner tes projets d'ecriture.
+          </p>
+          <Link href="#articles" className="hero-cta">
+            Explorer les articles
+          </Link>
+        </div>
       </section>
 
       <AdBanner slot="1111111111" label="Publicite en haut de page" />
 
-      <section id="articles">
-        <h2 className="section-title">Articles</h2>
+      <section id="articles" className="articles-panel">
+        <h2 className="section-title">Derniers articles</h2>
 
         {posts.length === 0 ? (
-          <p>Aucun article pour le moment.</p>
+          <p className="empty-state">Aucun article pour le moment.</p>
         ) : (
           <ul className="post-list">
             {posts.map((post) => (
@@ -57,7 +67,12 @@ export default function HomePage() {
                   <Link href={`/posts/${post.slug}`}>{post.title}</Link>
                 </h3>
                 {post.description ? <p>{post.description}</p> : null}
-                {post.date ? <time dateTime={post.date}>{formatDate(post.date)}</time> : null}
+                <div className="post-meta">
+                  {post.date ? <time dateTime={post.date}>{formatDate(post.date)}</time> : <span>Lecture</span>}
+                  <Link href={`/posts/${post.slug}`} className="read-link">
+                    Lire
+                  </Link>
+                </div>
               </li>
             ))}
           </ul>

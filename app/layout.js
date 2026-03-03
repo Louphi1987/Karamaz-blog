@@ -11,22 +11,22 @@ export const metadata = {
     default: "Karamaz Blog",
     template: "%s | Karamaz Blog"
   },
-  description: "Blog littéraire minimal autour de Dostoïevski.",
+  description: "Blog litteraire premium autour des grandes oeuvres et de l'edition independante.",
   alternates: {
     canonical: "/"
   },
   openGraph: {
     title: "Karamaz Blog",
-    description: "Blog littéraire minimal autour de Dostoïevski.",
+    description: "Blog litteraire premium autour des grandes oeuvres et de l'edition independante.",
     url: siteUrl,
     siteName: "Karamaz Blog",
     locale: "fr_FR",
     type: "website"
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Karamaz Blog",
-    description: "Blog littéraire minimal autour de Dostoïevski."
+    description: "Blog litteraire premium autour des grandes oeuvres et de l'edition independante."
   }
 };
 
@@ -38,10 +38,10 @@ export default function RootLayout({ children }) {
           <header className="site-header">
             <div className="brand-row">
               <Link href="/" className="brand-link" aria-label="Retour a l'accueil">
-                <span className="brand-logo" aria-hidden="true" />
+                <img src="/logo-karamaz.png" alt="Logo Karamaz" className="brand-logo" />
                 <span className="brand-text">
                   <span className="site-title">Karamaz</span>
-                  <span className="site-tagline">Lettres russes et outils pour auteurs independants</span>
+                  <span className="site-tagline">Lettres, editions et strategie d'auteur</span>
                 </span>
               </Link>
               <nav className="site-nav" aria-label="Menu principal">
