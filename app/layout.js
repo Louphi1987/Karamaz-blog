@@ -15,6 +15,11 @@ export const metadata = {
   alternates: {
     canonical: "/"
   },
+
+  other: {
+    "google-adsense-account": adsenseClient
+  },
+
   openGraph: {
     title: "Karamaz Blog",
     description: "Blog litteraire premium autour des grandes oeuvres et de l'edition independante.",
