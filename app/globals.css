@@ -350,15 +350,24 @@ a:hover {
   line-height: 1.1;
 }
 
+.about-panel .page-title {
+  margin-bottom: 1.15rem;
+}
+
 .about-panel p {
-  margin: 0 0 0.95rem;
+  margin: 0 0 1.05rem;
+}
+
+.about-panel p:last-of-type {
+  margin-bottom: 1.2rem;
 }
 
 .about-cta-link {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   align-items: center;
   justify-content: center;
-  margin-top: 0.3rem;
+  margin: 0.3rem auto 0;
   border-radius: 999px;
   border: 1px solid rgba(129, 88, 38, 0.42);
   background: linear-gradient(135deg, #b58843, #8f672c);
