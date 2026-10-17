@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getAllPosts, getPostBySlug } from "../../../lib/posts";
 import AdBanner from "../../../components/AdBanner";
+import ShareButtons from "../../../components/ShareButtons";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
 
