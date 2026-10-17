@@ -4,7 +4,7 @@ import { getAllPosts, getPostBySlug } from "../../../lib/posts";
 import AdBanner from "../../../components/AdBanner";
 import ShareButtons from "../../../components/ShareButtons";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://blog.karamaz.eu";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({
@@ -89,10 +89,23 @@ export default async function PostPage({ params }) {
 
       <AdBanner slot="3333333333" label="Publicite en debut d'article" />
 
-      <div className="post-content" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
-
-      <AdBanner slot="4444444444" label="Publicite en fin d'article" />
-
+      <div
+        className="post-content"
+        dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+      />
+      
+      <ShareButtons
+        title={post.title}
+        url={new URL(
+          `/posts/${post.slug}`,
+          siteUrl
+        ).toString()}
+      />
+      
+      <AdBanner
+        slot="4444444444"
+        label="Publicité en fin d’article"
+      />
       <p className="post-back-bottom">
         <Link href="/" className="back-link">
           {"<- Retour a l'accueil"}
